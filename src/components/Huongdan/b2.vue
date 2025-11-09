@@ -1,71 +1,113 @@
-
 <script setup>
-//c1 option API
-//c2 Composition API : dung ref , reactive
-import {ref , reactive} from "vue";
+import { ref, reactive } from "vue";
+
+// 1 Dữ liệu nguyên thủy
 let count = ref(0);
-let state = reactive({ amount: 0, name: "Dat" });
+let studentName = ref("FE Framework Vue 3");
+let studentEmail = ref("ducdh33@gmail.com");
+let studentAge = ref(19);
+let studentIsActive = ref(true);
 
+// 2 Đối tượng reactive
+let state = reactive({ amount: 0, name: "Duc", status: true });
 
-
-
-let studentName = ref("Dat");
-let studenEmail = ref("datbinn06@gmail.com");
-let studentAge = ref(19)
-let studentActive = ref(true)
-
+// 3 Hàm tăng giá trị
 function increamentCount() {
-    count.value++;
+  count.value++;
 }
-console.log(state);
+const increamentAmount = () => {
+  state.amount++;
+};
 
-const increamentAmount = () =>{
-    state.amount++;
-}
+// 4 Two-way data binding
+let hovaten = ref("Đào Hồng Đức");
 
-let Fullname = ref("Nguyen thanh Dat");
+// 5 Event binding
+const onClickDangKy = () => {
+  alert("Đăng ký thành công");
+};
 
-const onClickDangky = ()=>{
-    alert("Dang ky thanh cong");
-}
-const onBlurInput=()=>{
-    alert("Goi ham thanh cong");
-}
+const onBlurInput = () => {
+  alert("Thành công");
+};
+//styte binding
+let styleString = "font-size: 20px";
 
+// property binding
+let logoUrl = "/img/logo.png";
+let caunoiyeuthich = "Không làm mà đòi có ăn chỉ có ăn đầu B**i ăn cứt thế thôi";
 </script>
 
 <template>
-    <h1>Thong tin</h1>
-    <ul class="list-group">
-        <li class="list-group-item">{{ studentName }}</li>
-        <li class="list-group-item">{{ studenEmail }}</li>
-        <li class="list-group-item">{{ studentAge }}</li>
-        <li class="list-group-item"> Trang thai 
-                {{ studentActive ? 'Dang hoc' : 'Dang bao luu' }}
-        </li>
-    </ul>
+  <h1>Thông tin :</h1>
+  <ul class="list-group">
+    <li class="list-group-item">Tên sinh viên: {{ studentName }}</li>
+    <li class="list-group-item">Email: {{ studentEmail }}</li>
+    <li class="list-group-item">Tuổi: {{ studentAge }}</li>
+    <li class="list-group-item">
+      Trạng thái: {{ studentIsActive ? "đang học" : "bảo lưu" }}
+    </li>
+  </ul>
 
-    COUNT : {{ count }}
-    <button class="btn btn-danger" @click="increamentCount">Increament count</button>
-    State : {{ state.amount }}
-    <button class="btn btn-warning" @click="increamentAmount">Increament amount</button>
+  <hr />
 
-    <hr>
-    <h3>2 way data bining</h3>
-    <p>Su dung</p>
-    <hr>
-    <h3>2 way data bining</h3>
-    <p>Su dung</p>
-    <div>
-    <input type="text" name="" id="" class="form-control" v-model="Fullname">
-    <p>Xin chao {{ Fullname }}</p>
-    </div>
+  COUNT: {{ count }}
+  <button class="btn btn-danger" @click="increamentCount">Increament count</button>
+  <br /><br />
+  State amount: {{ state.amount }}
+  <button class="btn btn-warning" @click="increamentAmount">Increament amount</button>
 
-    <div>
-    <h6>Bat su kien click</h6>
-        <button class="btn btn-primary" @click="onClickDangky()">Dang ky</button>
-        <h6>Bat su kien blur</h6>
-        <input type="text" name="" id="" class="form-control" @blur="onBlurInput()">
-    </div>
+  <hr />
+  <h3>2 Way Data Binding</h3>
+  <p>Đồng bộ dữ liệu giữa input và biến</p>
+  <div>
+    <input type="text" class="form-control" v-model="hovaten" />
+    <p>Xin chào {{ hovaten }}</p>
+  </div>
+
+  <hr />
+  <h3>Event Binding</h3>
+  <p>Bắt sự kiện người dùng tương tác với HTML</p>
+  <div>
+    <h6>Bắt sự kiện click</h6>
+    <button class="btn btn-primary" @click="onClickDangKy()">Đăng ký</button>
+
+    <h6>Bắt sự kiện blur</h6>
+    <input type="text" class="form-control" @blur="onBlurInput()" />
+  </div>
+  <hr />
+  <h3>Class Binding</h3>
+  <p>v-bind:class dùng để binding các lớp css cho phần tử</p>
+  <p>Class binding - CHUỖI</p>
+  <div v-bind:class="'active'">
+    {{ hovaten }}
+  </div>
+  <p>Class binding - Đối Tượng</p>
+  <div :class="{ active: state.amount >= 3 }">
+    {{ state.amount }}
+  </div>
+
+  <!-- styte binding -->
+  <hr />
+  <h3>STYLE BINDING</h3>
+  <p>Style chuỗi, đối tượng, điều kiện</p>
+  <div :style="styleString">This is a style div</div>
+  <h3>kết hợp class binding và style binding</h3>
+  <div
+    :class="['card', state.status ? 'active-card' : 'inactive-card']"
+    :style="{ backgroundColor: state.status ? 'lightgreen' : lightcoral }"
+  >
+    {{ state.name }} - {{ state.status }}
+  </div>
+  <hr />
+  <h3>PROPETY BINDING</h3>
+  <p>Sử dụng fill giá trị vào các property của thẻ html</p>
+  <input type="text" class="form-control" v-bind:value="caunoiyeuthich" />
 </template>
-<style scoped></style>
+<style scoped>
+.active {
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
+</style>
