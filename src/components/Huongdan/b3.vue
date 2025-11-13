@@ -64,7 +64,10 @@
             <tr v-for="food in list_foods" :key="food.id">
         <td>{{ food.id }}</td>
         <td>{{ food.name }}</td>
-        <td>{{ food.quanity }}</td>
+        <td>
+        <button type="submit" class="btn">-</button>
+        {{ food.quanity }}</td>
+        <button type="submit" class="btn">-</button>
         <td>{{ food.price }}</td>
         <td>{{ (food.price * food.quanity).toFixed(2) }}</td>
       </tr>
