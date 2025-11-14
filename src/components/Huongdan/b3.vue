@@ -19,7 +19,14 @@
     ]);
     const total = () => list_foods.reduce((sum, item) => sum + item.price * item.quanity, 0);
 
-
+    const tang = (index)=>{
+        list_foods[index].quanity++;
+    }
+    const giam = (index) => {
+  if (list_foods[index].quanity > 0) {
+    list_foods[index].quanity--;
+  }
+};
 </script>
 <template>
     <div class="container">
@@ -61,13 +68,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="food in list_foods" :key="food.id">
+            <tr v-for="(food,index) in list_foods" :key="food.id">
         <td>{{ food.id }}</td>
         <td>{{ food.name }}</td>
         <td>
-        <button type="submit" class="btn">-</button>
-        {{ food.quanity }}</td>
-        <button type="submit" class="btn">-</button>
+            <button type="button" class="btn btn-sm btn-success" @click="giam(index)">-</button>
+            <input type="text"  class="form-control" v-model="food.quanity" >
+            <button type="button" class="btn btn-sm btn-success" @click="tang(index)">+</button>
+        </td>
         <td>{{ food.price }}</td>
         <td>{{ (food.price * food.quanity).toFixed(2) }}</td>
       </tr>
