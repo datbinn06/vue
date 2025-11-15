@@ -3,6 +3,7 @@ import Home from '@/components/Huongdan/b4.vue';
 import ListVue from '@/components/products/listVue.vue';
 import Create from '@/components/products/create.vue';
 import Update from '@/components/products/update.vue';
+import Day5 from '@/components/Huongdan/b5.vue';
 
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
       path : '/update-products',
       name : 'update-products',
       component : Update
+    },
+    {
+      path : '/day5',
+      name : 'day5',
+      component : Day5
     }
   ],
 })
