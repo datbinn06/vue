@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/components/Huongdan/b4.vue';
-import ListVue from '@/components/products/listVue.vue';
-import Create from '@/components/products/create.vue';
-import Update from '@/components/products/update.vue';
-import Day5 from '@/components/Huongdan/b5.vue';
+import Home from '@/components/Huongdan/b4.vue'; // tramg home
+import ListVue from '@/components/products/listVue.vue'; //dssp
+import Create from '@/components/products/create.vue'; // them
+import Update from '@/components/products/update.vue';//sua
+import Day5 from '@/components/Huongdan/b5.vue'; // validate
 
 
 const router = createRouter({

@@ -16,7 +16,7 @@
     const submitFrom = () => {
         // validate form
         let isValid = validate();
-        console.log(product);
+        // console.log(product);
         if (isValid) {
             // đẩy giữ liệu vào list
         // list_products.push(product); tất cả các giá trị product được push vào đều tham chiếu tới object product
@@ -121,7 +121,7 @@
                     <td>{{ p.quantity }}</td>
                     <td>{{ p.status }}</td>
                     <td>
-                        <button style="submit" class="btn btn-danger" @click="deleteProduct(index)">Xóa</button>
+                        <button type="submit" class="btn btn-danger" @click="deleteProduct(index)">Xóa</button>
                     </td>
                 </tr>
             </tbody>
